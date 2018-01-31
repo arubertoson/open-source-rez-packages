@@ -24,9 +24,13 @@ ExternalProject_add(
     URL ${url_hdf5}
     PREFIX hdf5
     UPDATE_COMMAND ""
-    CONFIGURE_COMMAND ./configure --prefix=${CMAKE_INSTALL_PREFIX} --with-pic --disable-shared --disable-debug --enable-threadsafe
+    CONFIGURE_COMMAND 
+        ${CMAKE_COMMAND}
+        -DCMAKE_INSTALL_PREFIX=${CMAKE_INSTALL_PREFIX}
+        -DCMAKE_BUILD_TYPE=Release
+        -DBUILD_SHARED_LIBS=OFF
+        -DBUILD_TESTING=OFF
     INSTALL_COMMAND "${INSTALL}"
     BUILD_IN_SOURCE 1
     BUILD_COMMAND make -j$ENV{REZ_BUILD_THREAD_COUNT}
 )
-
