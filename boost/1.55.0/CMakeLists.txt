@@ -20,6 +20,14 @@ rez_set_archive(
 # using a python command we will get direct paths no matter what developing 
 # environment we use for python, this specific command will get the full path 
 # to the python library
+
+# Python executable
+EXECUTE_PROCESS(COMMAND python -c "\
+import sys; print(sys.executable)"
+  OUTPUT_VARIABLE PYTHON_EXECUTABLE
+  )
+
+# Python library
 EXECUTE_PROCESS(COMMAND python -c "\
 import os; import distutils.sysconfig as sysconfig; \
 print(os.path.join(sysconfig.get_config_var('LIBDIR'), \

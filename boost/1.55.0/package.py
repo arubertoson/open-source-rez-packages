@@ -4,11 +4,17 @@ name = 'boost'
 
 version = '1.55.0'
 
-variants = [['platform-linux', 'arch-x86_64']]
+build_requires = [
+    'python-2.7',
+]
+
+variants = [
+    ['platform-linux', 'arch-x86_64'],
+]
+
 
 def commands():
     appendenv('BOOST_ROOT', '{root}')
+
     if building:
         appendenv('LD_LIBRARY_PATH', '{root}/lib/')
-
-
