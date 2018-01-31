@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
-name = 'ilmbase'
+name = 'hdf5'
 
-version = '2.2.0'
+version = '1.8.9'
 
 variants = [['platform-linux', 'arch-x86_64']]
 
 def commands():
-    appendenv('ILMBASE_ROOT', '{root}')
+    appendenv('HDF5_ROOT', '{root}')
 
     if building:
         env.PKG_CONFIG_PATH.append("{root}/lib/pkgconfig")
-        env.ILMBASE_INCLUDE_DIR = "{root}/include"
+        env.HDF5_INCLUDE_DIR = "{root}/include"
 
         # static libs only, hence build-time only
         env.LD_LIBRARY_PATH.append("{root}/lib")

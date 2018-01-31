@@ -4,17 +4,20 @@ name = 'alembic'
 
 version = '1.5.8'
 
-requires = [
-    'boost-1.55',
+build_requires = [
+    'boost',
     'ilmbase',
-    'pyilmbase'
+    'pyilmbase',
 ]
 
-variants = [['platform-linux', 'arch-x86_64']]
+variants = [
+    ['platform-linux', 'arch-x86_64'],
+]
+
 
 def commands():
-    appendenv('LD_LIBRARY_PATH', '{root}/lib/')
     appendenv('PATH', '{root}/bin/')
     appendenv('PYTHONPATH', '{root}/lib/')
 
-
+    if building:
+        appendenv('LD_LIBRARY_PATH', '{root}/lib/')

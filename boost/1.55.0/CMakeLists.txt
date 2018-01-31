@@ -5,12 +5,10 @@ include(RezRepository)
 include(ExternalProject)
 
 
-set(boost_version $ENV{REZ_BUILD_PROJECT_VERSION})
-
-
 # Look for already downloaded repos where REZ_REPO_PAYLOAD_DIR points to.
 # There are no automatic downloads you would have to use the url to manually
 # fetch it.
+set(boost_version $ENV{REZ_BUILD_PROJECT_VERSION})
 rez_set_archive(
   url_boost boost_1_55_0.tar.gz
   http://downloads.sourceforge.net/project/boost/boost/1.55.0/boost_1_55_0.tar.gz
@@ -37,6 +35,7 @@ print(get_python_inc())"
   OUTPUT_VARIABLE PYTHON_INCLUDE_DIR
   )
 
+
 # build arguments for boosts build system
 set(B2_ARGS 
   threading=multi 
@@ -46,13 +45,13 @@ set(B2_ARGS
   cxxflags=-fPIC 
   -q)
 
-
-message(${REZ_BUILD_INSTALL})
+# If we are builing we make the install command
 if(${REZ_BUILD_INSTALL})
-  set(install_cmd ./b2 ${B2_ARGS} --prefix=${CMAKE_INSTALL_PREFIX} install)
+  set(INSTALL ./b2 ${B2_ARGS} --prefix=${CMAKE_INSTALL_PREFIX} install)
 else()
-  set(install_cmd "")
+  set(INSTALL ${CMAKE_COMMAND} -E echo "Skipping install step...")
 endif()
+
 
 # Since boost has it's own build tools we use ExternalProject to create a build
 # setup for cmake.
@@ -62,7 +61,7 @@ ExternalProject_add(
   PREFIX boost
   UPDATE_COMMAND ""
   CONFIGURE_COMMAND ./bootstrap.sh --prefix=${CMAKE_INSTALL_PREFIX}
-  INSTALL_COMMAND ${install_cmd}
+  INSTALL_COMMAND ${INSTALL}
   BUILD_IN_SOURCE 1
   BUILD_COMMAND ./b2 ${B2_ARGS} stage
   )
