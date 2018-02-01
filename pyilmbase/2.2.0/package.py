@@ -2,11 +2,13 @@
 
 name = 'pyilmbase'
 
-version = '2.2.0'
+version = '2.2.1'
 
 build_requires = [
-    'ilmbase-2.2.0',
-    'boost-1.55',
+    'boost',
+    'python',
+    'numpy',
+    'ilmbase',
 ]
 
 variants = [
