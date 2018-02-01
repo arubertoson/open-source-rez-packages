@@ -16,11 +16,11 @@ rez_set_archive(
 # rez_find_packages(PREFIX pkgs AUTO)
 
 
-# make set stick in subdirectories:
-macro(set_option option value)
-  set(${option} ${value} CACHE INTERNAL "" FORCE)
-endmacro()
-# http://edsiper.linuxchile.cl/blog/2016/01/08/cmake-override-subdirectory-options/
+# # make set stick in subdirectories:
+# macro(set_option option value)
+#   set(${option} ${value} CACHE INTERNAL "" FORCE)
+# endmacro()
+# # http://edsiper.linuxchile.cl/blog/2016/01/08/cmake-override-subdirectory-options/
 
 # set_option(BOOST_ROOT $ENV{REZ_BOOST_ROOT})
 # set_option(PYILMBASE_ROOT $ENV{REZ_PYILMBASE_ROOT})

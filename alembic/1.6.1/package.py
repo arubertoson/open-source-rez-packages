@@ -2,10 +2,10 @@
 
 name = 'alembic'
 
-version = '1.5.8'
+version = '1.6.1'
 
 build_requires = [
-    'boost',
+    'boost-1.55',
     'ilmbase',
     'pyilmbase',
 ]
